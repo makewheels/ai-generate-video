@@ -1,11 +1,17 @@
 package com.example.aigeneratevideo;
 
-import com.alibaba.fastjson.JSONObject;
+import java.io.File;
+import java.util.List;
 
 public class Run {
     public static void main(String[] args) {
+        File baseFolder = new File("D:\\2024年4月16日093520");
         StoryService storyService = new StoryService();
-        JSONObject storyObject = storyService.generateStory();
-        System.out.println(storyObject);
+        Story story = storyService.generateStory();
+        File folder = new File(baseFolder, story.getTitle());
+        List<Scene> scenes = story.getScenes();
+        for (Scene scene : scenes) {
+
+        }
     }
 }
