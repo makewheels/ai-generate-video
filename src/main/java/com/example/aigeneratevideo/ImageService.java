@@ -57,7 +57,7 @@ public class ImageService {
             if (isTaskSuccess(imageTaskId)) {
                 break;
             }
-            ThreadUtil.sleep(4000);
+            ThreadUtil.sleep(5000);
         }
     }
 

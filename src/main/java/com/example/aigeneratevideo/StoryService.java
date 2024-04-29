@@ -18,13 +18,13 @@ public class StoryService {
         JSONArray scenes = new JSONArray();
 
         JSONObject scene1 = new JSONObject();
-        scene1.put("narrator", "图书馆的一角，一个古老的地图卷轴轻轻展开，尘封的秘密苏醒。");
+        scene1.put("narrator", "图书馆的一角，一个古老的地图卷轴轻轻展开，尘封的秘密苏醒。 --ar 9:16");
         scene1.put("prompt", "An ancient map scroll being unrolled in a dusty library corner.");
         scenes.add(scene1);
 
         JSONObject scene2 = new JSONObject();
         scene2.put("narrator", "小镇的出口处，一位年轻的探险者调整背包，准备踏上未知的旅途。");
-        scene2.put("prompt", "A young adventurer adjusting his backpack at the town's exit, ready for a journey.");
+        scene2.put("prompt", "A young adventurer adjusting his backpack at the town's exit, ready for a journey. --ar 9:16");
         scenes.add(scene2);
 
         story.put("scenes", scenes);
