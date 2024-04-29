@@ -1,6 +1,9 @@
 package com.example.aigeneratevideo;
 
+import cn.hutool.core.io.FileUtil;
+import com.alibaba.fastjson.JSON;
 import com.example.aigeneratevideo.utils.FfmpegUtil;
+import com.example.aigeneratevideo.utils.StoryUtil;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -31,8 +34,9 @@ public class Run {
         }
     }
 
-    private void mergeImageAndAudio(Story story, File storyFolder) {
-        // 小节
+    private void mergeImageAndAudio(File configFile, File storyFolder) {
+        Story story = StoryUtil.load(configFile);
+        // 生成小节视频
         File sectionVideoFolder = new File(storyFolder, "section-video");
         List<Scene> scenes = story.getScenes();
         for (int i = 0; i < scenes.size(); i++) {
@@ -45,7 +49,7 @@ public class Run {
                     sectionVideo);
         }
 
-        // 把小节合并
+        // 把小节视频合并
         List<File> sectionVideoFiles = new ArrayList<>();
         for (Scene scene : scenes) {
             sectionVideoFiles.add(new File(scene.getVideoFilePath()));
@@ -63,7 +67,11 @@ public class Run {
 
         handleImage(story, imageFolder);
         handleAudio(story, audioFolder);
-        mergeImageAndAudio(story, storyFolder);
+
+        File configFile = new File(storyFolder, "config.json");
+        StoryUtil.save(story, configFile);
+
+        mergeImageAndAudio(configFile, storyFolder);
     }
 
 

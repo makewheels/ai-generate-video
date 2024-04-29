@@ -72,5 +72,4 @@ public class ImageService {
         HttpUtil.downloadFile(imageUrl, imageFile);
     }
 
-
 }

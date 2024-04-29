@@ -35,7 +35,7 @@ public class FfmpegUtil {
                     .append("'")
                     .append("\n");
         }
-        File inventoryFile = new File(sourceVideoFiles.get(0), "inventory.txt");
+        File inventoryFile = new File(sourceVideoFiles.get(0).getParentFile(), "inventory.txt");
         log.info("生成合并视频的inventory文件: " + inventoryFile.getAbsolutePath());
         FileUtil.writeUtf8String(stringBuilder.toString(), inventoryFile);
         String cmd = String.format(FFMPEG_PATH
