@@ -6,8 +6,10 @@ import cn.hutool.core.util.RuntimeUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.List;
 
 @Slf4j
@@ -16,9 +18,8 @@ public class FfmpegUtil {
 
     public static void runCmd(String cmd) {
         try {
-            Process process = new ProcessBuilder(cmd).start();
-            process.waitFor();
-        } catch (IOException | InterruptedException e) {
+            Runtime.getRuntime().exec(cmd);
+        } catch (IOException e) {
             log.error(ExceptionUtils.getStackTrace(e));
         }
     }
@@ -33,7 +34,7 @@ public class FfmpegUtil {
                         " -c:a aac -b:a 192k -pix_fmt yuv420p -shortest \"%s\"",
                 imageFile.getAbsolutePath(), audioFile.getAbsolutePath(), outputFile.getAbsolutePath());
         log.info("合并图片和音频: " + cmd);
-        RuntimeUtil.exec(cmd);
+        runCmd(cmd);
         ThreadUtil.sleep(3000);
     }
 
@@ -55,7 +56,7 @@ public class FfmpegUtil {
                         + " -f concat -safe 0 -i \"%s\" -c copy \"%s\"",
                 inventoryFile.getAbsolutePath(), outputFile.getAbsolutePath());
         log.info("合并视频: " + cmd);
-        RuntimeUtil.exec(cmd);
+        runCmd(cmd);
         ThreadUtil.sleep(3000);
     }
 }

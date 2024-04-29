@@ -1,5 +1,6 @@
 package com.example.aigeneratevideo;
 
+import cn.hutool.core.io.FileUtil;
 import com.example.aigeneratevideo.utils.FfmpegUtil;
 import com.example.aigeneratevideo.utils.StoryUtil;
 
@@ -36,6 +37,7 @@ public class Run {
         Story story = StoryUtil.load(configFile);
         // 生成小节视频
         File sectionVideoFolder = new File(storyFolder, "section-video");
+        FileUtil.mkdir(sectionVideoFolder);
         List<Scene> scenes = story.getScenes();
         for (int i = 0; i < scenes.size(); i++) {
             Scene scene = scenes.get(i);
