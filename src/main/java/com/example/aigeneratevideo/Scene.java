@@ -8,4 +8,5 @@ public class Scene {
     private String prompt;
     private String imageFilePath;
     private String audioFilePath;
+    private String videoFilePath;
 }

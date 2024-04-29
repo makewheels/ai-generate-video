@@ -3,6 +3,7 @@ package com.example.aigeneratevideo;
 import com.example.aigeneratevideo.utils.FfmpegUtil;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Run {
@@ -37,15 +38,20 @@ public class Run {
         for (int i = 0; i < scenes.size(); i++) {
             Scene scene = scenes.get(i);
             File sectionVideo = new File(sectionVideoFolder, i + ".mp4");
-            FfmpegUtil.getMergeImageAndAudioFileCommand(
+            scene.setVideoFilePath(sectionVideo.getAbsolutePath());
+            FfmpegUtil.mergeImageAndAudioFile(
                     new File(scene.getImageFilePath()),
                     new File(scene.getAudioFilePath()),
                     sectionVideo);
         }
 
         // 把小节合并
-
-
+        List<File> sectionVideoFiles = new ArrayList<>();
+        for (Scene scene : scenes) {
+            sectionVideoFiles.add(new File(scene.getVideoFilePath()));
+        }
+        File resultFile = new File(storyFolder, story.getTitle() + ".mp4");
+        FfmpegUtil.mergeVideos(sectionVideoFiles, resultFile);
     }
 
     private void run() {
