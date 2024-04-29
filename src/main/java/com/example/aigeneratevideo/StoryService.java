@@ -1,8 +1,10 @@
 package com.example.aigeneratevideo;
 
 import cn.hutool.http.HttpUtil;
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.example.aigeneratevideo.utils.SecretKeyUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -10,12 +12,28 @@ import org.apache.commons.lang3.StringUtils;
 @Slf4j
 public class StoryService {
     private String getExampleStory() {
-        return "{\"title\":\"冒险的启程\",\"scenes\":[{\"narrator\":\"图书馆的一角，" +
-                "一个古老的地图卷轴轻轻展开，尘封的秘密苏醒。\",\"prompt\":\"" +
-                "An ancient map scroll being unrolled in a dusty library corner.\"}," +
-                "{\"narrator\":\"小镇的出口处，一位年轻的探险者调整背包，准备踏上未知的旅途。\"," +
-                "\"prompt\":\"A young adventurer adjusting his backpack at the town's exit," +
-                " ready for a journey.\"}]}";
+        JSONObject story = new JSONObject();
+        story.put("title", "冒险的启程");
+
+        JSONArray scenes = new JSONArray();
+
+        JSONObject scene1 = new JSONObject();
+        scene1.put("narrator", "图书馆的一角，一个古老的地图卷轴轻轻展开，尘封的秘密苏醒。");
+        scene1.put("prompt", "An ancient map scroll being unrolled in a dusty library corner.");
+        scenes.add(scene1);
+
+        JSONObject scene2 = new JSONObject();
+        scene2.put("narrator", "小镇的出口处，一位年轻的探险者调整背包，准备踏上未知的旅途。");
+        scene2.put("prompt", "A young adventurer adjusting his backpack at the town's exit, ready for a journey.");
+        scenes.add(scene2);
+
+        story.put("scenes", scenes);
+        return JSON.toJSONString(story, SerializerFeature.WriteSlashAsSpecial);
+    }
+
+    public static void main(String[] args) {
+        StoryService storyService = new StoryService();
+        System.out.println(storyService.getExampleStory());
     }
 
     private JSONObject getBody() {
@@ -44,10 +62,11 @@ public class StoryService {
     }
 
     public Story generateStory() {
-        log.info("生成故事，开始调用GPT接口");
+        JSONObject body = getBody();
+        log.info("GPT接口请求体：" + body.toJSONString());
         String response = HttpUtil.createPost("https://api.open-proxy.cn/v1/chat/completions")
                 .bearerAuth(SecretKeyUtil.getSecretKey())
-                .body(getBody().toJSONString())
+                .body(body.toJSONString())
                 .execute().body();
         log.info("GPT接口返回：" + response);
 
