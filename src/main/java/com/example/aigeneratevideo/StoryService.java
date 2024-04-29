@@ -49,6 +49,7 @@ public class StoryService {
                 .bearerAuth(SecretKeyUtil.getSecretKey())
                 .body(getBody().toJSONString())
                 .execute().body();
+        log.info("GPT接口返回：" + response);
 
         String storyJson = JSONObject.parseObject(response)
                 .getJSONArray("choices").getJSONObject(0)
