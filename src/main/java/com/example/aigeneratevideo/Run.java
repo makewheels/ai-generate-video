@@ -74,8 +74,8 @@ public class Run {
         File configFile = new File(storyFolder, "config.json");
         StoryUtil.save(story, configFile);
 
-//        File configFile = new File("D:\\2024年4月16日093520\\stories\\梦之城堡\\config.json");
-//        File storyFolder = new File("D:\\2024年4月16日093520\\stories\\梦之城堡");
+//        File configFile = new File("D:\\2024年4月16日093520\\stories\\奇幻之旅\\config.json");
+//        File storyFolder = new File("D:\\2024年4月16日093520\\stories\\奇幻之旅");
         mergeImageAndAudio(configFile, storyFolder);
         StoryUtil.save(story, configFile);
         log.info("结束");
