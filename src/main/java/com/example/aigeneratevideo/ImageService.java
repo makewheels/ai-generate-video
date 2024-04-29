@@ -66,7 +66,7 @@ public class ImageService {
         waitForTaskSuccess(imageTaskId);
 
         String upscaleTaskId = upscale(imageTaskId);
-        waitForTaskSuccess(imageTaskId);
+        waitForTaskSuccess(upscaleTaskId);
 
         String imageUrl = getImageUrl(upscaleTaskId);
         HttpUtil.downloadFile(imageUrl, imageFile);
