@@ -1,15 +1,27 @@
 package com.example.aigeneratevideo.utils;
 
 import cn.hutool.core.io.FileUtil;
+import cn.hutool.core.thread.ThreadUtil;
 import cn.hutool.core.util.RuntimeUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.exception.ExceptionUtils;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 @Slf4j
 public class FfmpegUtil {
     private static final String FFMPEG_PATH = "C:/mysofts/ffmpeg.exe";
+
+    public static void runCmd(String cmd) {
+        try {
+            Process process = new ProcessBuilder(cmd).start();
+            process.waitFor();
+        } catch (IOException | InterruptedException e) {
+            log.error(ExceptionUtils.getStackTrace(e));
+        }
+    }
 
     /**
      * 合并图片和音频
@@ -21,7 +33,8 @@ public class FfmpegUtil {
                         " -c:a aac -b:a 192k -pix_fmt yuv420p -shortest \"%s\"",
                 imageFile.getAbsolutePath(), audioFile.getAbsolutePath(), outputFile.getAbsolutePath());
         log.info("合并图片和音频: " + cmd);
-        RuntimeUtil.execForStr(cmd);
+        RuntimeUtil.exec(cmd);
+        ThreadUtil.sleep(3000);
     }
 
     /**
@@ -42,6 +55,7 @@ public class FfmpegUtil {
                         + " -f concat -safe 0 -i \"%s\" -c copy \"%s\"",
                 inventoryFile.getAbsolutePath(), outputFile.getAbsolutePath());
         log.info("合并视频: " + cmd);
-        RuntimeUtil.execForStr(cmd);
+        RuntimeUtil.exec(cmd);
+        ThreadUtil.sleep(3000);
     }
 }

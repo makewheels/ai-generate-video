@@ -8,4 +8,5 @@ import java.util.List;
 public class Story {
     private String title;
     private List<Scene> scenes;
+    private String resultFilePath;
 }
