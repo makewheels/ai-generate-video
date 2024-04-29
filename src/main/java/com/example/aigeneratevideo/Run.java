@@ -1,7 +1,5 @@
 package com.example.aigeneratevideo;
 
-import cn.hutool.core.io.FileUtil;
-import com.alibaba.fastjson.JSON;
 import com.example.aigeneratevideo.utils.FfmpegUtil;
 import com.example.aigeneratevideo.utils.StoryUtil;
 
