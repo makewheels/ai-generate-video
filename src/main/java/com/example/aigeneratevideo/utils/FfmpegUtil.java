@@ -22,7 +22,6 @@ public class FfmpegUtil {
         } catch (IOException e) {
             log.error(ExceptionUtils.getStackTrace(e));
         }
-        ThreadUtil.sleep(5000);
     }
 
     /**
@@ -36,6 +35,7 @@ public class FfmpegUtil {
                 imageFile.getAbsolutePath(), audioFile.getAbsolutePath(), outputFile.getAbsolutePath());
         log.info("合并图片和音频: " + cmd);
         runCmd(cmd);
+        ThreadUtil.sleep(5000);
     }
 
     /**
@@ -57,5 +57,6 @@ public class FfmpegUtil {
                 inventoryFile.getAbsolutePath(), outputFile.getAbsolutePath());
         log.info("合并视频: " + cmd);
         runCmd(cmd);
+        ThreadUtil.sleep(12000);
     }
 }

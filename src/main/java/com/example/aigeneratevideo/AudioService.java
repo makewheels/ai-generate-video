@@ -14,6 +14,7 @@ import java.io.InputStream;
 @Slf4j
 public class AudioService {
     public void textToAudio(String input, File audioFile) {
+        log.info("文字转音频tts，输入 = " + input);
         JSONObject body = new JSONObject();
         body.put("model", "tts-1-hd");
         body.put("input", input);

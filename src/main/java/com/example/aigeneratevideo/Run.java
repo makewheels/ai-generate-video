@@ -3,12 +3,15 @@ package com.example.aigeneratevideo;
 import cn.hutool.core.io.FileUtil;
 import com.example.aigeneratevideo.utils.FfmpegUtil;
 import com.example.aigeneratevideo.utils.StoryUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Run {
+    private static final Logger log = LoggerFactory.getLogger(Run.class);
     StoryService storyService = new StoryService();
     ImageService imageService = new ImageService();
     AudioService audioService = new AudioService();
@@ -75,6 +78,7 @@ public class Run {
 //        File storyFolder = new File("D:\\2024年4月16日093520\\stories\\梦之城堡");
         mergeImageAndAudio(configFile, storyFolder);
         StoryUtil.save(story, configFile);
+        log.info("结束");
     }
 
 
