@@ -59,22 +59,22 @@ public class Run {
     }
 
     private void run() {
-//        File baseFolder = new File("D:\\2024年4月16日093520\\stories");
-//        Story story = storyService.generateStory();
-//        File storyFolder = new File(baseFolder, story.getTitle());
-//        File imageFolder = new File(storyFolder, "image");
-//        File audioFolder = new File(storyFolder, "audio");
-//
-//        handleImage(story, imageFolder);
-//        handleAudio(story, audioFolder);
-//
-//        File configFile = new File(storyFolder, "config.json");
-//        StoryUtil.save(story, configFile);
+        File baseFolder = new File("D:\\2024年4月16日093520\\stories");
+        Story story = storyService.generateStory();
+        File storyFolder = new File(baseFolder, story.getTitle());
+        File imageFolder = new File(storyFolder, "image");
+        File audioFolder = new File(storyFolder, "audio");
 
-        File configFile = new File("D:\\2024年4月16日093520\\stories\\遗失的光芒\\config.json");
-        File storyFolder = new File("D:\\2024年4月16日093520\\stories\\遗失的光芒");
+        handleImage(story, imageFolder);
+        handleAudio(story, audioFolder);
+
+        File configFile = new File(storyFolder, "config.json");
+        StoryUtil.save(story, configFile);
+
+//        File configFile = new File("D:\\2024年4月16日093520\\stories\\遗失的光芒\\config.json");
+//        File storyFolder = new File("D:\\2024年4月16日093520\\stories\\遗失的光芒");
         mergeImageAndAudio(configFile, storyFolder);
-//        StoryUtil.save(story, configFile);
+        StoryUtil.save(story, configFile);
     }
 
 
