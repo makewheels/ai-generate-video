@@ -4,7 +4,9 @@ import cn.hutool.http.HttpUtil;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.example.aigeneratevideo.utils.SecretKeyUtil;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class StoryService {
     private String getExampleStory() {
         return "{\"title\":\"冒险的启程\",\"scenes\":[{\"narrator\":\"图书馆的一角，" +
@@ -40,6 +42,7 @@ public class StoryService {
     }
 
     public Story generateStory() {
+        log.info("生成故事，开始调用GPT接口");
         String response = HttpUtil.createPost("https://api.open-proxy.cn/v1/chat/completions")
                 .bearerAuth(SecretKeyUtil.getSecretKey())
                 .body(getBody().toJSONString())
@@ -47,6 +50,7 @@ public class StoryService {
         String story = JSONObject.parseObject(response)
                 .getJSONArray("choices").getJSONObject(0)
                 .getJSONObject("message").getString("content");
+        log.info("生成得到的故事：" + story);
         return JSONObject.parseObject(story, Story.class);
     }
 

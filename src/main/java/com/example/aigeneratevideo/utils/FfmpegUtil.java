@@ -36,6 +36,7 @@ public class FfmpegUtil {
                     .append("\n");
         }
         File inventoryFile = new File(sourceVideoFiles.get(0), "inventory.txt");
+        log.info("生成合并视频的inventory文件: " + inventoryFile.getAbsolutePath());
         FileUtil.writeUtf8String(stringBuilder.toString(), inventoryFile);
         String cmd = String.format(FFMPEG_PATH
                         + " -f concat -safe 0 -i \"%s\" -c copy \"%s\"",
