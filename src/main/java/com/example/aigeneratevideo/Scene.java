@@ -6,4 +6,6 @@ import lombok.Data;
 public class Scene {
     private String narrator;
     private String prompt;
+    private String imageFilePath;
+    private String audioFilePath;
 }
