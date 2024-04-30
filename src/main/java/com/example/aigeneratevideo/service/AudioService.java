@@ -1,4 +1,4 @@
-package com.example.aigeneratevideo;
+package com.example.aigeneratevideo.service;
 
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.io.IoUtil;

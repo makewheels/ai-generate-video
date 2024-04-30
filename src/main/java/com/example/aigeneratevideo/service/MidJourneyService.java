@@ -1,4 +1,4 @@
-package com.example.aigeneratevideo;
+package com.example.aigeneratevideo.service;
 
 import cn.hutool.core.thread.ThreadUtil;
 import cn.hutool.http.HttpUtil;
@@ -9,8 +9,8 @@ import lombok.extern.slf4j.Slf4j;
 import java.io.File;
 
 @Slf4j
-public class ImageService {
-    public String submit(String prompt) {
+public class MidJourneyService {
+    private String submit(String prompt) {
         log.info("生成图片，提交提示词，" + prompt);
         JSONObject body = new JSONObject();
         body.put("prompt", prompt);
@@ -22,7 +22,7 @@ public class ImageService {
         return JSONObject.parseObject(response).getString("result");
     }
 
-    public boolean isTaskSuccess(String taskId) {
+    private boolean isTaskSuccess(String taskId) {
         String url = "https://api.open-proxy.cn/mj/task/" + taskId + "/fetch";
         String response = HttpUtil.createGet(url)
                 .bearerAuth(SecretKeyUtil.getSecretKey())
@@ -31,7 +31,7 @@ public class ImageService {
         return JSONObject.parseObject(response).getString("status").equals("SUCCESS");
     }
 
-    public String getImageUrl(String taskId) {
+    private String getImageUrl(String taskId) {
         String url = "https://api.open-proxy.cn/mj/task/" + taskId + "/fetch";
         String response = HttpUtil.createGet(url)
                 .bearerAuth(SecretKeyUtil.getSecretKey())
@@ -39,7 +39,7 @@ public class ImageService {
         return JSONObject.parseObject(response).getString("imageUrl");
     }
 
-    public String upscale(String taskId) {
+    private String upscale(String taskId) {
         JSONObject body = new JSONObject();
         body.put("action", "UPSCALE");
         body.put("index", 1);

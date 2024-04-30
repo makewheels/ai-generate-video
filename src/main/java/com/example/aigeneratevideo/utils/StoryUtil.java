@@ -2,7 +2,7 @@ package com.example.aigeneratevideo.utils;
 
 import cn.hutool.core.io.FileUtil;
 import com.alibaba.fastjson.JSON;
-import com.example.aigeneratevideo.Story;
+import com.example.aigeneratevideo.bean.Story;
 
 import java.io.File;
 

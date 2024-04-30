@@ -1,6 +1,11 @@
 package com.example.aigeneratevideo;
 
 import cn.hutool.core.io.FileUtil;
+import com.example.aigeneratevideo.bean.Scene;
+import com.example.aigeneratevideo.bean.Story;
+import com.example.aigeneratevideo.service.AudioService;
+import com.example.aigeneratevideo.service.DallService;
+import com.example.aigeneratevideo.service.MidJourneyService;
 import com.example.aigeneratevideo.utils.FfmpegUtil;
 import com.example.aigeneratevideo.utils.StoryUtil;
 import org.slf4j.Logger;
@@ -13,16 +18,17 @@ import java.util.List;
 public class Run {
     private static final Logger log = LoggerFactory.getLogger(Run.class);
     StoryService storyService = new StoryService();
-    ImageService imageService = new ImageService();
+//    MidJourneyService midJourneyService = new MidJourneyService();
+    DallService dallService = new DallService();
     AudioService audioService = new AudioService();
 
     private void handleImage(Story story, File imageFolder) {
         List<Scene> scenes = story.getScenes();
         for (int i = 0; i < scenes.size(); i++) {
             Scene scene = scenes.get(i);
-            File imageFile = new File(imageFolder, i + ".png");
+            File imageFile = new File(imageFolder, i + ".webp");
             scene.setImageFilePath(imageFile.getAbsolutePath());
-            imageService.promptToImageFile(scene.getPrompt(), imageFile);
+            dallService.promptToImageFile(scene.getPrompt(), imageFile);
         }
     }
 

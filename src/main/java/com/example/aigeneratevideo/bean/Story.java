@@ -1,4 +1,4 @@
-package com.example.aigeneratevideo;
+package com.example.aigeneratevideo.bean;
 
 import lombok.Data;
 
