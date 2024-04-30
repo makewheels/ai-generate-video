@@ -48,6 +48,7 @@ public class ImageService {
                 .bearerAuth(SecretKeyUtil.getSecretKey())
                 .body(body.toJSONString())
                 .execute().body();
+        log.info("放大图片，画图taskId = {}, response = {}", taskId, response);
         return JSONObject.parseObject(response).getString("result");
     }
 
