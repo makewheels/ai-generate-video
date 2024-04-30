@@ -69,6 +69,7 @@ public class Run {
     private void run() {
         File baseFolder = new File("D:\\2024年4月16日093520\\stories");
         Story story = storyService.generateStory();
+        story.setTitle(story.getTitle().replace(":", ""));
         File storyFolder = new File(baseFolder, story.getTitle());
         File imageFolder = new File(storyFolder, "image");
         File audioFolder = new File(storyFolder, "audio");

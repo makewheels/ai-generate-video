@@ -14,28 +14,31 @@ import org.apache.commons.lang3.StringUtils;
 public class StoryService {
     private String getExampleStory() {
         JSONObject story = new JSONObject();
-        story.put("title", "寻找失落的宝藏");
+        story.put("title", "奥巴马总统的奇幻梦境");
 
         JSONArray scenes = new JSONArray();
 
         JSONObject scene1 = new JSONObject();
-        scene1.put("narrator", "在一个遥远的岛屿上，有一个被遗忘的传说。这个传说说的是，在岛的深处有一座隐藏着巨大财富的宝藏。无数人都曾试图找到宝藏，但却无一成功。 --ar 9:16");
-        scene1.put("prompt", "An ancient map scroll being unrolled in a dusty library corner. Anime style --ar 9:16");
+        scene1.put("narrator", "奥巴马总统在白宫里经历了一场奇怪的梦境，变成了一只巨大的袋鼠。");
+        scene1.put("prompt", "Giant kangaroo Obama experiences a strange dream in the White House, " +
+                "surreal and fantastical. Anime style --ar 9:16");
         scenes.add(scene1);
 
         JSONObject scene2 = new JSONObject();
-        scene2.put("narrator", "直到有一天，一个名叫艾米莉的年轻女孩听说了这个传说。她对冒险充满了好奇心，决定要亲自前往寻找这个宝藏。");
-        scene2.put("prompt", "A young adventurer adjusting his backpack at the town's exit," +
-                " ready for a journey. Anime style --ar 9:16");
+        scene2.put("narrator", "他必须完成三个任务才能解脱。他找到了隐藏在纪念碑和白宫地下室的宝物。");
+        scene2.put("prompt", "Obama, the Kangaroo, must complete three tasks to be free. " +
+                "He discovers treasures hidden in monuments and the White House basement." +
+                " Anime style --ar 9:16");
+
         scenes.add(scene2);
+        JSONObject scene3 = new JSONObject();
+        scene3.put("narrator", "最后，他被告知这是一场考验。梦境消失后，他重新醒来，但他对人生有了新的认识。");
+        scene3.put("prompt", "As the dream vanishes, he's informed it's a trial. Upon waking, " +
+                "he gains a fresh perspective on life. Anime style --ar 9:16");
+        scenes.add(scene3);
 
         story.put("scenes", scenes);
         return JSON.toJSONString(story, SerializerFeature.WriteSlashAsSpecial);
-    }
-
-    public static void main(String[] args) {
-        StoryService storyService = new StoryService();
-        System.out.println(storyService.getExampleStory());
     }
 
     private JSONObject getBody() {
@@ -50,10 +53,11 @@ public class StoryService {
         JSONObject systemMessage = new JSONObject();
         systemMessage.put("role", "system");
 
-        systemMessage.put("content", "帮我生成一个小故事，主题是关于Isaac Newton的故事。"
+        systemMessage.put("content", "帮我生成一个小故事，主题是关于Barack Obama的故事。"
                 + "里面有7个场景。你需要返回故事的标题，标题不要带Windows路径不能显示的特殊字符。"
                 + "你需要以json形式返回，并且返回标准纯净的json，不要掺杂其它东西，因为我需要通过程序读取json。"
-                + "故事需要吸引人，新颖，引人入胜。你只需要模仿返回的格式，不需要模仿故事内容，故事你可以生成一个更好的。"
+                + "故事需要吸引人，新颖，引人入胜，跌宕起伏。你不需要基于主题老的故事，你可以创造新的故事。"
+                + "你只需要模仿返回的格式，不需要模仿故事内容，故事你可以生成一个更好的。"
                 + "你要选一个画风，在每个图里都用相同的画风，你把画风放在每个提示词里就可以了。"
                 + "\n在每个场景里，你需要给出旁白朗读文字和图片生成提示词。"
                 + "旁白是中文，旁白朗读文字，注意朗读文字不要很长。"
