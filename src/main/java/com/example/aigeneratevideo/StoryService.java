@@ -21,20 +21,20 @@ public class StoryService {
         JSONObject scene1 = new JSONObject();
         scene1.put("narrator", "奥巴马总统在白宫里经历了一场奇怪的梦境，变成了一只巨大的袋鼠。");
         scene1.put("prompt", "Giant kangaroo Obama experiences a strange dream in the White House, " +
-                "surreal and fantastical. Anime style --ar 9:16");
+                "surreal and fantastical. Anime style. --ar 9:16");
         scenes.add(scene1);
 
         JSONObject scene2 = new JSONObject();
         scene2.put("narrator", "他必须完成三个任务才能解脱。他找到了隐藏在纪念碑和白宫地下室的宝物。");
         scene2.put("prompt", "Obama, the Kangaroo, must complete three tasks to be free. " +
                 "He discovers treasures hidden in monuments and the White House basement." +
-                " Anime style --ar 9:16");
+                " Anime style. --ar 9:16");
 
         scenes.add(scene2);
         JSONObject scene3 = new JSONObject();
         scene3.put("narrator", "最后，他被告知这是一场考验。梦境消失后，他重新醒来，但他对人生有了新的认识。");
         scene3.put("prompt", "As the dream vanishes, he's informed it's a trial. Upon waking, " +
-                "he gains a fresh perspective on life. Anime style --ar 9:16");
+                "he gains a fresh perspective on life. Anime style. --ar 9:16");
         scenes.add(scene3);
 
         story.put("scenes", scenes);
@@ -53,7 +53,7 @@ public class StoryService {
         JSONObject systemMessage = new JSONObject();
         systemMessage.put("role", "system");
 
-        systemMessage.put("content", "帮我生成一个小故事，主题是关于Barack Obama的故事。"
+        systemMessage.put("content", "帮我生成一个小故事，主题是关于HarryPotter的故事。"
                 + "里面有7个场景。你需要返回故事的标题，标题不要带Windows路径不能显示的特殊字符。"
                 + "你需要以json形式返回，并且返回标准纯净的json，不要掺杂其它东西，因为我需要通过程序读取json。"
                 + "故事需要吸引人，新颖，引人入胜，跌宕起伏。你不需要基于主题老的故事，你可以创造新的故事。"
