@@ -4,7 +4,6 @@ import cn.hutool.core.io.FileUtil;
 import com.example.aigeneratevideo.bean.Scene;
 import com.example.aigeneratevideo.bean.Story;
 import com.example.aigeneratevideo.service.AudioService;
-import com.example.aigeneratevideo.service.DallService;
 import com.example.aigeneratevideo.service.MidJourneyService;
 import com.example.aigeneratevideo.utils.FfmpegUtil;
 import com.example.aigeneratevideo.utils.StoryUtil;
@@ -18,17 +17,17 @@ import java.util.List;
 public class Run {
     private static final Logger log = LoggerFactory.getLogger(Run.class);
     StoryService storyService = new StoryService();
-//    MidJourneyService midJourneyService = new MidJourneyService();
-    DallService dallService = new DallService();
+    MidJourneyService imageService = new MidJourneyService();
+//    DallService dallService = new DallService();
     AudioService audioService = new AudioService();
 
     private void handleImage(Story story, File imageFolder) {
         List<Scene> scenes = story.getScenes();
         for (int i = 0; i < scenes.size(); i++) {
             Scene scene = scenes.get(i);
-            File imageFile = new File(imageFolder, i + ".webp");
+            File imageFile = new File(imageFolder, i + ".png");
             scene.setImageFilePath(imageFile.getAbsolutePath());
-            dallService.promptToImageFile(scene.getPrompt(), imageFile);
+            imageService.promptToImageFile(scene.getPrompt(), imageFile);
         }
     }
 
