@@ -48,8 +48,8 @@ public class StoryService {
         JSONObject systemMessage = new JSONObject();
         systemMessage.put("role", "system");
 
-        systemMessage.put("content", "帮我生成一个小故事，主题是关于小黄人的。" +
-                "里面有7个场景。你需要返回故事的标题。" +
+        systemMessage.put("content", "帮我生成一个小故事，主题是关于Grand Theft Auto里的人物故事。" +
+                "里面有7个场景。你需要返回故事的标题，标题不要带Windows路径不能显示的特殊字符。" +
                 "你需要以json形式返回，并且返回标准纯净的json，不要掺杂其它东西，因为我需要通过程序读取json。" +
                 "故事需要吸引人，新颖，引人入胜。你只需要模仿返回的格式，不需要模仿故事内容，故事你可以生成一个更好的。" +
                 "\n在每个场景里，你需要给出旁白朗读文字和图片生成提示词。" +
